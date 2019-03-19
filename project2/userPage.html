@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FB :: User Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="feedback.css" type="text/css">
+  	
+	<script>
+
+	function openOverlay() {
+	  document.getElementById("myOverlay").style.display = "block";
+	  document.getElementById("employeePost").style.display = "none";
+	}
+
+	function closeOverlay() {
+	  document.getElementById("myOverlay").style.display = "none";
+	  document.getElementById("employeePost").style.display = "block";
+	}
+	</script>
+
+  </head>
+
+  <body>
+    <div id="userPage">
+
+    	<div id="myOverlay" class="overlay">
+  			<span class="closebtn" onclick="closeOverlay()" title="Close Overlay">×</span>
+  			<div class="overlay-content">
+    		
+      			<h2>Rules...</h2>
+      			<ol>
+      				<li>Don't use any real names in posts.</li>
+      				<li>Don't use profanity.</li>
+      				<li>Don't bully others.</li>      					
+      				<li>Be Professional</li>
+      				<li></li>
+      			</ol>
+    			
+  			</div>
+		</div>
+
+
+	    <header>
+	        <img src="logo.png" alt="ScheduleYou Logo">
+	        <h1>Feed.It.Back</h1>
+	    </header>
+		<nav class="menu">
+	        <ul>
+	          <li><a href="home.html" class="active">Take Me Home</a></li>
+	          <li><a href="#" onclick="openOverlay();">Post</a></li>
+	        </ul>
+	    </nav>
+		<main>
+			<div class="column left">
+          		<form action="#" id="employeePost">
+          			<textarea name="comments" id="problem" rows="4" cols="25" placeholder="Problem..." required="required"></textarea>
+          			<textarea name="comments" id="solution" rows="4"  cols="25" placeholder="Solution..." required="required"></textarea>
+    				<input type="submit" name="postBtn" id="postBtn" value="Post">
+          		</form>
+         	</div>
+
+         	<div class="column right">
+            	
+         	</div>
+		</main>
+
+	      <footer>
+	        Copyright &copy; 2019 ScheduleYou<br>
+	        <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
+	      </footer>
+
+    </div>
+  </body>
+
+</html>

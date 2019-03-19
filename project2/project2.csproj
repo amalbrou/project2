@@ -91,7 +91,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="adminLogin.html" />
+    <Content Include="feedback.css" />
     <Content Include="Global.asax" />
+    <Content Include="home.html" />
+    <Content Include="userPage.html" />
     <Content Include="Web.config" />
     <Content Include="WebServices.asmx" />
   </ItemGroup>
