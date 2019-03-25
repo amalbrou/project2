@@ -17,6 +17,25 @@
 	  document.getElementById("myOverlay").style.display = "none";
 	  document.getElementById("employeePost").style.display = "block";
 	}
+
+    function CreatePost(fid, problem, solution) {
+        var webMethod = "WebServices.asmx/PostQuestion";
+        var parameters = "{\"fid\":\"" + encodeURI(fid) + "\",\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert("Post Created");
+                    //window.location.href = "home.html";
+                },
+                error: function (e) {
+                    alert("Unable to Create Post");
+                }
+            });
+        }
 	</script>
 
   </head>
@@ -34,7 +53,6 @@
       				<li>Don't use profanity.</li>
       				<li>Don't bully others.</li>      					
       				<li>Be Professional</li>
-      				<li></li>
       			</ol>
     			
   			</div>
@@ -53,11 +71,11 @@
 	    </nav>
 		<main>
 			<div class="column left">
-          		<form action="#" id="employeePost">
-          			<textarea name="comments" id="problem" rows="4" cols="25" placeholder="Problem..." required="required"></textarea>
-          			<textarea name="comments" id="solution" rows="4"  cols="25" placeholder="Solution..." required="required"></textarea>
-    				<input type="submit" name="postBtn" id="postBtn" value="Post">
-          		</form>
+                <form id="employeePost" onsubmit="CreatePost($('#problem').val(), $('#solution').val()); return false;">
+                    <textarea name="comments" id="problem" rows="4" cols="25" placeholder="Problem..." required="required"></textarea>
+                    <textarea name="comments" id="solution" rows="4" cols="25" placeholder="Solution..." required="required"></textarea>
+                    <input type="submit" name="postBtn" id="postBtn" value="Post">
+                </form>
          	</div>
 
          	<div class="column right">
