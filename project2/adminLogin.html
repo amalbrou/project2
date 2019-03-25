@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>FB :: Admin Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="feedback.css" type="text/css">
-    <script src="#" type="text/javascript"></script>
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        // onsubmit function for logging in admin account
+        function LogOn(userId, pass) {
+            var webMethod = "WebServices.asmx/LogOn";
+            var parameters = "{\"uid\":\"" + encodeURI(userId) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.d) {
+                        // alert("Logon Sucessful");
+                        window.location.href = "home.html";
+                    }
+                    else {
+                        alert("Logon failed, please try again.");
+                    }
+                },
+                error: function (e) {
+                    alert("Error");
+                }
+            });
+        }
+    </script>
+</head>
 
   <body>
       <div id="adminLogin">
@@ -16,7 +44,7 @@
         </header>
 
         <main>
-            <form method="post" action="#">
+            <form onsubmit="LogOn($('#myUsername').val(), $('#myPassword').val()); return false;">
               <input type="text" name="myUsername" id="myUsername" required="required" placeholder="Username...">
               <input type="password" name="myPassword" id="myPassword" maxlength="12" required="required" placeholder="Password...">
               <input type="submit" value="Login">
