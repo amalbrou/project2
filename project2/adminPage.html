@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FB :: User Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="feedback.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        var postArray;
+
+        //this function grabs accounts and loads our account window
+        function LoadPosts() {
+            var webMethod = "WebServices.asmx/GetPosts";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.d.length > 0) {
+
+                        postArray = msg.d;
+                        for (var i = 0; i < postArray.length; i++) {
+                            var post;
+                            var li = document.createElement("LI");
+                            
+                            li.setAttribute("id", "msLi" + [i]);
+
+                            post = "<input type='checkbox' id='"+ postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            li.innerHTML = post;
+
+                            $("#uncheckedPosts").append(li);
+                        }
+                    }
+                },
+                error: function (e) {
+                    alert("Error");
+                }
+            });
+        }
+
+        window.onload = LoadPosts();
+        // not done with this yet but it should determine if a checkbox is checked and if it is the deny button should call this function to delete it
+        function removePost() {
+            var checkBox = document.getElementById(id);
+
+            if (checkBox.checked == true) {
+                //document.getElementById(id).//remove?
+            }
+            else {
+
+            }
+        }
+
+    </script>
+</head>
+
+  <body>
+    <div id="adminPage">
+
+	    <header>
+	        <img src="logo.png" alt="FeedItBack Logo">
+	        <h1>Feed.It.Back</h1>
+	    </header>
+		<nav class="menu">
+	        <ul>
+	          <li><a href="adminLogin.html" class="active">Logout</a></li>
+	        </ul>
+	    </nav>
+		<main>
+            <div id="uncheckedPosts"></div>
+            <div id="buttons">
+                <button type="button" id="approveBtn">Approve</button>
+                <button type="button" id="denyBtn" onclick="removePost()">Deny</button>
+            </div>
+		    
+		</main>
+
+	      <footer>
+	        Copyright &copy; 2019 Feed.It.Back<br>
+	        <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
+	      </footer>
+
+    </div>
+  </body>
+
+</html>

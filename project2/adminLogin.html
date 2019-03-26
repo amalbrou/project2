@@ -8,6 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+
+        
+
         // onsubmit function for logging in admin account
         function LogOn(userId, pass) {
             var webMethod = "WebServices.asmx/LogOn";
@@ -22,7 +25,7 @@
                 success: function (msg) {
                     if (msg.d) {
                         alert("Logon Sucessful");
-                        window.location.href = "home.html";
+                        window.location.href = "adminPage.html";
                     }
                     else {
                         alert("Logon failed, please try again.");
@@ -39,7 +42,7 @@
   <body>
       <div id="adminLogin">
         <header>
-          <img src="logo.png" alt="ScheduleYou Logo">
+          <img src="logo.png" alt="FeedItBack Logo">
           <h1>Feed.It.Back</h1>
         </header>
 
@@ -54,7 +57,7 @@
         </main>
 
         <footer>
-          Copyright &copy; 2019 ScheduleYou<br>
+          Copyright &copy; 2019 Feed.It.Back<br>
           <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
         </footer>
       </div>

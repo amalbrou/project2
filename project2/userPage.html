@@ -8,16 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  	
 	<script>
 
-	function openOverlay() {
-	  document.getElementById("myOverlay").style.display = "block";
-	  document.getElementById("employeePost").style.display = "none";
-	}
-
-	function closeOverlay() {
-	  document.getElementById("myOverlay").style.display = "none";
-	  document.getElementById("employeePost").style.display = "block";
-	}
-
     function CreatePost(fid, problem, solution) {
         var webMethod = "WebServices.asmx/PostQuestion";
         var parameters = "{\"fid\":\"" + encodeURI(fid) + "\",\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
@@ -36,37 +26,20 @@
                 }
             });
         }
+       
+        //window.onload = LoadPosts;
 
-        var postArray;
 
-        //this function grabs accounts and loads our account window
-        function LoadPosts() {
-            var webMethod = "WebServices.asmx/GetPosts";
-            $.ajax({
-                type: "POST",
-                url: webMethod,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (msg) {
-                    if (msg.d.length > 0) {
-
-                        postArray = msg.d;
-                        for (var i = 0; i < postArray.length; i++) {
-                            var post;
-                            var li = document.createElement("LI");
-                            li.setAttribute("id", "msLi" + [i]);
-                            post = "<strong>Post #:</strong> " + postArray[i].fid + " <strong>Problem:</strong> " + postArray[i].problem + " <strong>Solution:</strong> " + postArray[i].solution;
-                            li.innerHTML = post;
-                            $("#columnRight").append(li);
-                        }
-                    }
-                },
-                error: function (e) {
-                    alert("Error");
-                }
-            });
+        function openOverlay() {
+            document.getElementById("myOverlay").style.display = "block";
+            document.getElementById("employeePost").style.display = "none";
         }
-        window.onload = LoadPosts;
+
+        function closeOverlay() {
+            document.getElementById("myOverlay").style.display = "none";
+            document.getElementById("employeePost").style.display = "block";
+            //LoadPosts();
+        }
 	</script>
 
   </head>
@@ -83,7 +56,7 @@
       				<li>Don't use any real names in posts.</li>
       				<li>Don't use profanity.</li>
       				<li>Don't bully others.</li>      					
-      				<li>Be Professional</li>
+      				<li>Be Professional.</li>
       			</ol>
     			
   			</div>
@@ -91,7 +64,7 @@
 
 
 	    <header>
-	        <img src="logo.png" alt="ScheduleYou Logo">
+	        <img src="logo.png" alt="FeedItBack Logo">
 	        <h1>Feed.It.Back</h1>
 	    </header>
 		<nav class="menu">
@@ -115,7 +88,7 @@
 		</main>
 
 	      <footer>
-	        Copyright &copy; 2019 ScheduleYou<br>
+	        Copyright &copy; 2019 Feed.It.Back<br>
 	        <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
 	      </footer>
 

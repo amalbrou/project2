@@ -10,8 +10,7 @@ nav { float: left;
     font-weight: bold;
     width: 100%; }
 
-.menu{ background-color: #eee;
-        width: 100%; }
+.menu{ background-color: #eee; }
 
 .menu a { color: black;
           font-weight: bold; 
@@ -75,10 +74,13 @@ body { font-family: "Courier", "Times New Roman", "serif";
                 text-decoration: none;
                 font-weight: bold;}
 
-footer { color: #000000;
-        text-align: center;
-        font-weight: bold; 
-        padding: 10px;}
+footer {color: #000000;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0px 10px 0px;
+    float: left;
+    width: 100%;
+}
 
 #homePage .column { margin-left: auto;
                   margin-right: auto;
@@ -109,11 +111,15 @@ footer { color: #000000;
                   width: 30%;
                   float: left;}
 
-#userPage .right { background-color: #FFFFFF;
-                    /*opacity: 0.5;
-                    filter: alpha(opacity=50);*/
-                    width: 70%;
-                    float: right; }
+#userPage .right {
+    background-color: #FFFFFF;
+    /*opacity: 0.5;
+      filter: alpha(opacity=50);*/
+    width: 70%;
+    float: left;
+}
+
+#userPage .right li { padding-left: 10%;}
 
 #userPage ol { text-align: left;
               margin-left: 30%; }
@@ -150,3 +156,12 @@ footer { color: #000000;
                     color: white; }
 
 .overlay .closebtn:hover { color: #ccc;}
+
+li { list-style-type: none;}
+
+#adminPage main{ background-color: #FFFFFF;}
+
+#uncheckedPosts { padding: 10%;}
+
+#buttons { padding-left: 10%;
+           padding-bottom: 10%;}

@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="adminLogin.html" />
+    <Content Include="adminPage.html" />
     <Content Include="feedback.css" />
     <Content Include="Global.asax" />
     <Content Include="home.html" />
@@ -139,7 +140,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56268</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
