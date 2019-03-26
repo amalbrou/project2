@@ -71,6 +71,19 @@ namespace project2
             return success;
         }
 
+
+        [WebMethod(EnableSession = true)]
+        public bool LogOff()
+        {
+            //if they log off, then we remove the session.  That way, if they access
+            //again later they have to log back on in order for their ID to be back
+            //in the session!
+            Session.Abandon();
+            return true;
+        }
+
+
+
         [WebMethod(EnableSession = true)]
         public void PostQuestion(string fid, string problem, string solution)
         {
@@ -145,6 +158,33 @@ namespace project2
                 }
                 //convert the list of accounts to an array and return!
                 return feedback.ToArray();
+        }
+
+
+
+        [WebMethod(EnableSession = true)]
+        public void DeletePost(string fid)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //this is a simple update, with parameters to pass in values
+            string sqlSelect = "delete from feedback where FID=@idValue;";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            //sqlCommand.Parameters.AddWithValue("@classValue", HttpUtility.UrlDecode(classNumber));
+            sqlCommand.Parameters.Add("@idValue", MySqlDbType.String);
+            sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(fid);
+
+            sqlConnection.Open();
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
         }
     }
 }

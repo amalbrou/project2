@@ -26,8 +26,40 @@
                 }
             });
         }
-       
-        //window.onload = LoadPosts;
+
+        var postArray;
+        //this function grabs accounts and loads our account window
+        function LoadPosts() {
+            var webMethod = "WebServices.asmx/GetPosts";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.d.length > 0) {
+
+                        postArray = msg.d;
+                        for (var i = 0; i < postArray.length; i++) {
+                            var post;
+                            var li = document.createElement("LI");
+
+                            li.setAttribute("id", "msLi" + [i]);
+
+                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            li.innerHTML = post;
+
+                            $("#columnRight").append(li);
+                        }
+                    }
+                },
+                error: function (e) {
+                    alert("Error");
+                }
+            });
+        }
+
+        window.onload = LoadPosts();
 
 
         function openOverlay() {
@@ -67,12 +99,14 @@
 	        <img src="logo.png" alt="FeedItBack Logo">
 	        <h1>Feed.It.Back</h1>
 	    </header>
+
 		<nav class="menu">
 	        <ul>
 	          <li><a href="home.html" class="active">Take Me Home</a></li>
 	          <li><a href="#" onclick="openOverlay();">Post</a></li>
 	        </ul>
 	    </nav>
+
 		<main>
 			<div class="column left">
                 <form id="employeePost" onsubmit="CreatePost($('#problem').val(), $('#solution').val()); return false;">

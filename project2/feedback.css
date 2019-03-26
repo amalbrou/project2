@@ -42,11 +42,15 @@ html { background-image: url("office3.jpg");
       background-position: center;
       background-size: cover; }
 
-body { font-family: "Courier", "Times New Roman", "serif";
-      margin-left: auto;
-      margin-right: auto;
-      width: 70%;
-      padding: 30px 0px 30px 0px;}
+body {
+    font-family: "Courier", "Times New Roman", "serif";
+    padding: 30px 0px 30px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    min-width: 70%;
+    max-width: 70%;
+}
 
 
 #adminLogin main { display: block;
@@ -103,7 +107,7 @@ footer {color: #000000;
                   margin-left: 4%;
                   float: right;}
 
-#userPage .column { padding: 15px 0px 15px 0px;}
+#userPage .column { padding: 15px 0px 15px 0px; }
 
 #userPage .left { background-color: #cdebf9; 
                   /*opacity: 0.5;
@@ -117,6 +121,7 @@ footer {color: #000000;
       filter: alpha(opacity=50);*/
     width: 70%;
     float: left;
+    
 }
 
 #userPage .right li { padding-left: 10%;}
