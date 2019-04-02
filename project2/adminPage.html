@@ -9,7 +9,9 @@
     <script>
 
         var postArray;
-
+        var li;
+        var liCounter = 0;
+        var elementList;
         //this function grabs accounts and loads our account window
         function LoadPosts() {
             var webMethod = "WebServices.asmx/GetPosts";
@@ -22,17 +24,70 @@
                     if (msg.d.length > 0) {
 
                         postArray = msg.d;
+                    //    if ($(".fb")[0]) {
+                    //        console.log("reload");
+                    //    }
+                    //    else {
+                    //        for (var i = 0; i < postArray.length; i++) {
+                    //            var post;
+                    //            li = document.createElement("LI");
+
+                    //            li.setAttribute("id", "msLi" + [i]);
+                    //            //console.log(li);
+                    //            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                    //            li.innerHTML = post;
+                    //            $("#uncheckedPosts").append(li);
+                    //            liCounter++;
+                    //            //console.log(post);
+                    //        }
+                    //        var i = 0;
+                    //        $('.fb').each(function () {
+                    //            i++;
+                    //            var newID = 'cbox' + i;
+                    //            $(this).attr('id', newID);
+                    //            $(this).val(i);
+                    //        });
+                    //}
                         for (var i = 0; i < postArray.length; i++) {
                             var post;
-                            var li = document.createElement("LI");
+                            li = document.createElement("LI");
                             
                             li.setAttribute("id", "msLi" + [i]);
-
-                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" +"<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            //console.log(li);
+                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            //alert(postArray[i].fid);
                             li.innerHTML = post;
-
                             $("#uncheckedPosts").append(li);
+                            liCounter++;
+                            //console.log(post);
                         }
+
+                        //if ($(".fb")[0]) {
+                            
+                        //}
+                        //else {
+                        //    var i = 0;
+                        //    $('.fb').each(function () {
+                        //        i++;
+                        //        var newID = 'cbox' + i;
+                        //        $(this).attr('id', newID);
+                        //        $(this).val(i);
+                        //    });
+                        //}
+                        var i = 0;
+                        $('.fb').each(function () {
+                            i++;
+                            var newID = 'cbox' + i;
+                            $(this).attr('id', newID);
+                            //$(this).val(i);
+                        });
+                        console.log($(".fb"));
+                        //elementList = $(".fb");
+                        //console.log($(".fb"));
+                        //for (var i = 0; i <= elementList.length; i++) {
+                        //    elementList[i].setAttribute("id", "cbox" + (i+1));
+                        //}
+                        //console.log(elementList);
                     }
                 },
                 error: function (e) {
@@ -65,23 +120,39 @@
             });
         }
 
-        function DeleteClass(fid) {
+        var elemToDelete;
+        function DeletePost(fid) {
             var webMethod = "WebServices.asmx/DeletePost";
-            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
-
-            $.ajax({
-                type: "POST",
-                url: webMethod,
-                data: parameters,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (msg) {
-                    alert("Post Deleted")
-                },
-                error: function (e) {
-                    alert("Unable to delete post");
+            for (var i = 1; i <= liCounter; i++) {
+                //var liElement = document.getElementById("msLi" + [i]);
+                //var liElement = document.getElementsByClassName("fb");
+                var liElement = document.getElementById("cbox" + [i]);
+                console.log(liElement);
+                if (liElement.checked == true) {
+                    fid = liElement.value;
+                    //elemToDelete = $("cbox" + [i] + ".fb");
+                    console.log(fid);
+                    //console.log(elemToDelete);
+                    var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+                    $.ajax({
+                        type: "POST",
+                        url: webMethod,
+                        data: parameters,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            location.reload();
+                        },
+                        error: function (e) {
+                            alert("Unable to delete post");
+                        }
+                    });
+                    break;
                 }
-            });
+                else {
+                    continue;
+                }
+            }
         }
     </script>
 </head>
@@ -103,8 +174,7 @@
 
             <div id="uncheckedPosts"></div>
             <div id="buttons">
-                <button type="button" id="approveBtn">Approve</button>
-                <button type="button" id="denyBtn" onclick="DeletePost($('input[type='checkbox']').val()); return false;">Deny</button>
+                <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny</button>
             </div>
 
         </main>

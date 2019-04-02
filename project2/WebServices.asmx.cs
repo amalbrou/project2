@@ -173,8 +173,9 @@ namespace project2
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
             //sqlCommand.Parameters.AddWithValue("@classValue", HttpUtility.UrlDecode(classNumber));
-            sqlCommand.Parameters.Add("@idValue", MySqlDbType.String);
-            sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(fid);
+            //sqlCommand.Parameters.Add("@idValue", MySqlDbType.String);
+            //sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(fid);
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
 
             sqlConnection.Open();
             try
