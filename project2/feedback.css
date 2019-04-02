@@ -107,7 +107,13 @@ footer {color: #000000;
                   margin-left: 4%;
                   float: right;}
 
-#userPage .column { padding: 15px 0px 15px 0px; }
+#userPage #column { padding: 15px 0px 15px 0px;
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: #FFFFFF;
+    height: auto;
+}
 
 #userPage .left { background-color: #cdebf9; 
                   /*opacity: 0.5;
@@ -115,24 +121,40 @@ footer {color: #000000;
                   width: 30%;
                   float: left;}
 
-#userPage .right {
-    background-color: #FFFFFF;
-    /*opacity: 0.5;
-      filter: alpha(opacity=50);*/
-    width: 70%;
-    float: left;
-    
-}
-
-#userPage .right li { padding-left: 10%;}
+#userPage #column li { padding-left: 10%;}
 
 #userPage ol { text-align: left;
               margin-left: 30%; }
 
 #employeePost { display: none;
-                width: 90%;
-                margin-right: auto;
-                margin-left: auto; }
+    float: left;
+    width: 25%;
+    padding: 2%;
+    box-shadow: 1px 1px 2px 2px #ddd;
+    margin-left: 2%;
+    background-color: #eee;
+}
+
+#problem, #solution {
+    width: 90%;
+}
+
+#postBtn {
+    padding: 2%;
+    width: 25%;
+}
+
+#display { margin-top: 0;
+        margin-bottom: 0;
+        float: right;
+        width: 60%;
+        margin-right: 2%;
+        margin-left: 2%;
+        padding: 2%;
+        box-shadow: 1px 1px 2px 2px #ddd;
+        margin-left: 2%;
+        background-color: #eee;
+}
  
 .overlay { height: 100%;
           width: 100%;

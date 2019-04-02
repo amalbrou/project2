@@ -49,10 +49,10 @@
 
                             li.setAttribute("id", "msLi" + [i]);
 
-                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            post = "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
                             li.innerHTML = post;
 
-                            $("#columnRight").append(li);
+                            $("#display").append(li);
                         }
                     }
                 },
@@ -62,7 +62,7 @@
             });
         }
 
-        window.onload = LoadPosts();
+        //window.onload = LoadPosts();
 
 
         function openOverlay() {
@@ -111,16 +111,18 @@
 	    </nav>
 
 		<main>
-			<div class="column left">
+			<div id="column" onload="LoadPosts()">
                 <form id="employeePost" onsubmit="CreatePost($('#problem').val(), $('#solution').val()); return false;">
                     <textarea name="comments" id="problem" rows="4" cols="25" placeholder="Problem..." required="required"></textarea>
                     <textarea name="comments" id="solution" rows="4" cols="25" placeholder="Solution..." required="required"></textarea>
                     <input type="submit" name="postBtn" id="postBtn" value="Post">
                 </form>
-         	</div>
 
-         	<div class="column right" id="columnRight">
-                
+                <div>
+                    <ul id="display">
+
+                    </ul>
+                </div>
          	</div>
 		</main>
 
