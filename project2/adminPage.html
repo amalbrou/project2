@@ -52,9 +52,11 @@
                             var post;
                             li = document.createElement("LI");
                             
+                            
                             li.setAttribute("id", "msLi" + [i]);
+                            li.setAttribute("class", "display");
                             //console.log(li);
-                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>&nbsp;Problem:</strong> " + postArray[i].problem + "<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Solution:</strong> " + postArray[i].solution;
                             //alert(postArray[i].fid);
                             li.innerHTML = post;
                             $("#uncheckedPosts").append(li);

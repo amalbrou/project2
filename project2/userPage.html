@@ -48,11 +48,12 @@
                             var li = document.createElement("LI");
 
                             li.setAttribute("id", "msLi" + [i]);
+                            li.setAttribute("class", "display");
 
-                            post = "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution;
                             li.innerHTML = post;
 
-                            $("#display").append(li);
+                            $("#displayUl").append(li);
                         }
                     }
                 },
@@ -119,7 +120,7 @@
                 </form>
 
                 <div>
-                    <ul id="display">
+                    <ul id="displayUl">
 
                     </ul>
                 </div>
