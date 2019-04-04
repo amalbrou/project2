@@ -76,6 +76,28 @@
             document.getElementById("employeePost").style.display = "block";
             //LoadPosts();
         }
+
+        function search() {
+            var input, filter, ul, li, i, txtValue;
+
+            input = document.getElementById("searchBar");
+            filter = input.value.toUpperCase();
+
+            ul = document.getElementById("displayUl");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                txtValue = li[i].textContent || li[i].innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                }
+                else {
+                    li[i].style.display = "none";
+                }
+            }
+
+        }
 	</script>
 
   </head>
@@ -90,6 +112,7 @@
       			<h2>Rules...</h2>
       			<ol>
       				<li>Don't use any real names in posts.</li>
+                    <li>Must be 400 characters and under.</li>
       				<li>Don't use profanity.</li>
       				<li>Don't bully others.</li>      					
       				<li>Be Professional.</li>
@@ -108,6 +131,12 @@
 	        <ul>
 	          <li><a href="home.html" class="active">Take Me Home</a></li>
 	          <li><a href="#" onclick="openOverlay();">Post</a></li>
+              <li id="search">
+                  <form method="get">
+                      <label for="searchBar">Search</label>
+                      <input type="search" name="searchBar" id="searchBar" placeholder="Search..." size="20" onkeyup="search()">
+                  </form>
+              </li>
 	        </ul>
 	    </nav>
 
