@@ -33,7 +33,7 @@
         var postArray;
         //this function grabs accounts and loads our account window
         function LoadPosts() {
-            var webMethod = "WebServices.asmx/GetPosts";
+            var webMethod = "WebServices.asmx/GetApprovedPosts";
             $.ajax({
                 type: "POST",
                 url: webMethod,

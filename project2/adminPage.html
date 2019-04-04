@@ -14,7 +14,7 @@
         var elementList;
         //this function grabs accounts and loads our account window
         function LoadPosts() {
-            var webMethod = "WebServices.asmx/GetPosts";
+            var webMethod = "WebServices.asmx/GetUnapprovedPosts";
             $.ajax({
                 type: "POST",
                 url: webMethod,

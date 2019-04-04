@@ -90,7 +90,7 @@ namespace project2
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //the only thing fancy about this query is SELECT LAST_INSERT_ID() at the end.  All that
             //does is tell mySql server to return the primary key of the last inserted row.
-            string sqlSelect = "insert into feedback (FID, problem, solution) " +
+            string sqlSelect = "insert into feedback2 (FID, problem, solution) " +
                 "values(@idValue, @probValue, @solValue); SELECT LAST_INSERT_ID();";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
@@ -122,7 +122,7 @@ namespace project2
         }
 
         [WebMethod(EnableSession = true)]
-        public PostInfo[] GetPosts()
+        public PostInfo[] GetUnapprovedPosts()
         {
             //check out the return type.  It's an array of Account objects.  You can look at our custom Account class in this solution to see that it's 
             //just a container for public class-level variables.  It's a simple container that asp.net will have no trouble converting into json.  When we return
@@ -130,10 +130,10 @@ namespace project2
             //Keeps everything simple.
 
             //WE ONLY SHARE ACCOUNTS WITH LOGGED IN USERS!
-                DataTable sqlDt = new DataTable("feedback");
+                DataTable sqlDt = new DataTable("feedback2");
 
                 string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-                string sqlSelect = "select * from feedback";
+                string sqlSelect = "select * from feedback2 where approved = 0";
 
                 MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
                 MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -161,13 +161,53 @@ namespace project2
         }
 
 
+        [WebMethod(EnableSession = true)]
+        public PostInfo[] GetApprovedPosts()
+        {
+            //check out the return type.  It's an array of Account objects.  You can look at our custom Account class in this solution to see that it's 
+            //just a container for public class-level variables.  It's a simple container that asp.net will have no trouble converting into json.  When we return
+            //sets of information, it's a good idea to create a custom container class to represent instances (or rows) of that information, and then return an array of those objects.  
+            //Keeps everything simple.
+
+            //WE ONLY SHARE ACCOUNTS WITH LOGGED IN USERS!
+            DataTable sqlDt = new DataTable("feedback2");
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            string sqlSelect = "select * from feedback2 where approved = 1";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            //gonna use this to fill a data table
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            //filling the data table
+            sqlDa.Fill(sqlDt);
+
+            //loop through each row in the dataset, creating instances
+            //of our container class Account.  Fill each acciount with
+            //data from the rows, then dump them in a list.
+            List<PostInfo> feedback = new List<PostInfo>();
+            for (int i = 0; i < sqlDt.Rows.Count; i++)
+            {
+                feedback.Add(new PostInfo
+                {
+                    fid = Convert.ToInt32(sqlDt.Rows[i]["fid"]),
+                    problem = sqlDt.Rows[i]["problem"].ToString(),
+                    solution = sqlDt.Rows[i]["solution"].ToString()
+                });
+            }
+            //convert the list of accounts to an array and return!
+            return feedback.ToArray();
+        }
+
+
 
         [WebMethod(EnableSession = true)]
         public void DeletePost(string fid)
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //this is a simple update, with parameters to pass in values
-            string sqlSelect = "delete from feedback where FID=@idValue;";
+            string sqlSelect = "delete from feedback2 where FID=@idValue;";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -194,7 +234,7 @@ namespace project2
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //this is a simple update, with parameters to pass in values
-            string sqlSelect = "sel from feedback where FID=@idValue;";
+            string sqlSelect = "update feedback2 set approved = 1 where FID=@idValue;";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);

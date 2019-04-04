@@ -78,7 +78,7 @@ body {
                 text-decoration: none;
                 font-weight: bold;}
 
-footer {color: #000000;
+footer { color: #000000;
     text-align: center;
     font-weight: bold;
     padding: 10px 0px 10px 0px;
@@ -201,19 +201,27 @@ footer {color: #000000;
 
 li { list-style-type: none;}
 
-#adminPage main{ background-color: #FFFFFF;}
+#adminPage main{ background-color: #eee;}
 
 #adminPage input[type=checkbox] {
     width: 20px;
     height: 20px;
 }
 
-#uncheckedPosts { padding: 10%;}
+#uncheckedPosts {
+    padding: 10% 10% 2% 10%;
+}
 
 #buttons { padding-left: 10%;
            padding-bottom: 10%;
 }
 
-#denyBtn { padding: 5px 20px 5px 20px;
-            font-size: medium;
+#denyBtn { width: 15%;
+    padding: 5px 0px 5px 0px;
+    font-size: medium;
+}
+
+#approveBtn { width: 15%;
+    padding: 5px 0px 5px 0px;
+    font-size: medium;
 }
