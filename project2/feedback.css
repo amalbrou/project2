@@ -10,14 +10,14 @@ nav { float: left;
     font-weight: bold;
     width: 100%; }
 
-.menu{ background-color: #eee; }
+.menu{ background-color: #B8C0C8; }
 
 .menu a { color: black;
           font-weight: bold; 
           display: inline; 
           text-decoration: none; }
 
-.menu li:hover { background-color: #ccc; }
+.menu li:hover { background-color: #36648B; }
 
 .menu li.active { background-color: #666666;
                       color: white; }
@@ -93,25 +93,28 @@ footer {color: #000000;
                   margin-top: 100px;
                   margin-bottom: 100px;}
 
-#homePage .left, #homePage .right { width: 40%;
-        text-align: center;
-        padding: 50px 10px 50px 10px;
-        font-size: 20px;
-        border-radius: 5px;}
+#homePage .left, #homePage .right {
+    width: 40%;
+    text-align: center;
+    padding: 50px 10px 50px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #dae6f0;
+}
 
-#homePage .left { background-color: #cdebf9; 
-                  margin-right: 4%;
+#homePage .left { margin-right: 4%;
                   float: left;}
 
-#homePage .right { background-color: #FFFFFF;
-                  margin-left: 4%;
-                  float: right;}
+#homePage .right {
+    margin-left: 4%;
+    float: right;
+}
 
 #userPage #column { padding: 15px 0px 15px 0px;
     width: 100%;
     height: auto;
     float: left;
-    background-color: #FFFFFF;
+    background-color: #eee;
     height: auto;
 }
 
@@ -132,7 +135,7 @@ footer {color: #000000;
     padding: 2%;
     box-shadow: 1px 1px 2px 2px #ddd;
     margin-left: 2%;
-    background-color: #eee;
+    background-color: #FFFFFF;
 }
 
 #problem, #solution {
@@ -142,6 +145,11 @@ footer {color: #000000;
 #postBtn {
     padding: 2%;
     width: 25%;
+}
+
+.reaction { padding: 0.75%;
+            width: 15%;
+            margin: 3% 2% 2% 0%;
 }
 
 #displayUl {
@@ -155,8 +163,8 @@ footer {color: #000000;
 .display { margin-bottom: 30px;
         padding: 2%;
         box-shadow: 1px 1px 2px 2px #ddd;
-        background-color: #eee;
-        border-radius: 3px;
+        background-color: #FFFFFF;
+        border-radius: 5px;
 }
 
 

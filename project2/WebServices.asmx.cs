@@ -187,5 +187,32 @@ namespace project2
             }
             sqlConnection.Close();
         }
+
+
+        [WebMethod(EnableSession = true)]
+        public void ApprovePost(string fid)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //this is a simple update, with parameters to pass in values
+            string sqlSelect = "sel from feedback where FID=@idValue;";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            //sqlCommand.Parameters.AddWithValue("@classValue", HttpUtility.UrlDecode(classNumber));
+            //sqlCommand.Parameters.Add("@idValue", MySqlDbType.String);
+            //sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(fid);
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
+
+            sqlConnection.Open();
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
+        }
     }
 }

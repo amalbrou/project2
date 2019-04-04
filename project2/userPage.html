@@ -47,10 +47,10 @@
                             var post;
                             var li = document.createElement("LI");
 
-                            li.setAttribute("id", "msLi" + [i]);
+                            //li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
 
-                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution;
+                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution +"<br><input type='submit' value='Agree' class='reaction'><input type='submit' value='Disagree' class='reaction'>";
                             li.innerHTML = post;
 
                             $("#displayUl").append(li);

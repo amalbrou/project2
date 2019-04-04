@@ -156,6 +156,43 @@
                 }
             }
         }
+
+
+
+        var elemToApprove;
+        function ApprovePost(fid) {
+            var webMethod = "WebServices.asmx/ApprovePost";
+            for (var i = 1; i <= liCounter; i++) {
+                //var liElement = document.getElementById("msLi" + [i]);
+                //var liElement = document.getElementsByClassName("fb");
+                var liElement = document.getElementById("cbox" + [i]);
+                console.log(liElement);
+                if (liElement.checked == true) {
+                    fid = liElement.value;
+                    //elemToDelete = $("cbox" + [i] + ".fb");
+                    console.log(fid);
+                    //console.log(elemToApprove);
+                    var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+                    $.ajax({
+                        type: "POST",
+                        url: webMethod,
+                        data: parameters,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            location.reload();
+                        },
+                        error: function (e) {
+                            alert("Unable to approve post");
+                        }
+                    });
+                    break;
+                }
+                else {
+                    continue;
+                }
+            }
+        }
     </script>
 </head>
 
@@ -177,6 +214,7 @@
             <div id="uncheckedPosts"></div>
             <div id="buttons">
                 <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny</button>
+                <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve</button>
             </div>
 
         </main>
