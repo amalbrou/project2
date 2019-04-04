@@ -4,6 +4,7 @@
     <title>FB :: User Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="feedback.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -24,35 +25,35 @@
                     if (msg.d.length > 0) {
 
                         postArray = msg.d;
-                    //    if ($(".fb")[0]) {
-                    //        console.log("reload");
-                    //    }
-                    //    else {
-                    //        for (var i = 0; i < postArray.length; i++) {
-                    //            var post;
-                    //            li = document.createElement("LI");
+                        //    if ($(".fb")[0]) {
+                        //        console.log("reload");
+                        //    }
+                        //    else {
+                        //        for (var i = 0; i < postArray.length; i++) {
+                        //            var post;
+                        //            li = document.createElement("LI");
 
-                    //            li.setAttribute("id", "msLi" + [i]);
-                    //            //console.log(li);
-                    //            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
-                    //            li.innerHTML = post;
-                    //            $("#uncheckedPosts").append(li);
-                    //            liCounter++;
-                    //            //console.log(post);
-                    //        }
-                    //        var i = 0;
-                    //        $('.fb').each(function () {
-                    //            i++;
-                    //            var newID = 'cbox' + i;
-                    //            $(this).attr('id', newID);
-                    //            $(this).val(i);
-                    //        });
-                    //}
+                        //            li.setAttribute("id", "msLi" + [i]);
+                        //            //console.log(li);
+                        //            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>Problem:</strong> " + postArray[i].problem + "\n\n<strong>Solution:</strong> " + postArray[i].solution;
+                        //            li.innerHTML = post;
+                        //            $("#uncheckedPosts").append(li);
+                        //            liCounter++;
+                        //            //console.log(post);
+                        //        }
+                        //        var i = 0;
+                        //        $('.fb').each(function () {
+                        //            i++;
+                        //            var newID = 'cbox' + i;
+                        //            $(this).attr('id', newID);
+                        //            $(this).val(i);
+                        //        });
+                        //}
                         for (var i = 0; i < postArray.length; i++) {
                             var post;
                             li = document.createElement("LI");
-                            
-                            
+
+
                             li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
                             //console.log(li);
@@ -65,7 +66,7 @@
                         }
 
                         //if ($(".fb")[0]) {
-                            
+
                         //}
                         //else {
                         //    var i = 0;
@@ -99,7 +100,7 @@
         }
 
         window.onload = LoadPosts();
-       
+
 
         function LogOff() {
             var webMethod = "WebServices.asmx/LogOff";
@@ -213,8 +214,8 @@
 
             <div id="uncheckedPosts"></div>
             <div id="buttons">
-                <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny</button>
-                <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve</button>
+                <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny<i class='material-icons'>close</i></button>
+                <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve<i class='material-icons'>check</i></button>
             </div>
 
         </main>

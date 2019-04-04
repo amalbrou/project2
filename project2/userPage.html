@@ -1,17 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>FB :: User Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="feedback.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  	
-	<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
 
-    var hasRefreshed = false;
-    function CreatePost(fid, problem, solution) {
-        var webMethod = "WebServices.asmx/PostQuestion";
-        var parameters = "{\"fid\":\"" + encodeURI(fid) + "\",\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
+        var hasRefreshed = false;
+        function CreatePost(fid, problem, solution) {
+            var webMethod = "WebServices.asmx/PostQuestion";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\",\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
             $.ajax({
                 type: "POST",
                 url: webMethod,
@@ -50,7 +51,7 @@
                             //li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
 
-                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution +"<br><input type='submit' value='Agree' class='reaction'><input type='submit' value='Disagree' class='reaction'>";
+                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction'><i class='material-icons' style='font-size: 16px;'>thumb_up</i></button><button type='button' class='reaction'><i class='material-icons' style='font-size: 16px;'>thumb_down</i></button>";
                             li.innerHTML = post;
 
                             $("#displayUl").append(li);
@@ -98,9 +99,9 @@
             }
 
         }
-	</script>
+    </script>
 
-  </head>
+</head>
 
   <body>
     <div id="userPage">
@@ -129,12 +130,13 @@
 
 		<nav class="menu">
 	        <ul>
-	          <li><a href="home.html" class="active">Take Me Home</a></li>
-	          <li><a href="#" onclick="openOverlay();">Post</a></li>
+	          <li><a href="home.html" class="active">Take Me Home&nbsp<i class='material-icons'>home</i></a></li>
+	          <li><a href="#" onclick="openOverlay();">Post&nbsp<i class='material-icons'>create</i></a></li>
               <li id="search">
                   <form method="get">
                       <label for="searchBar">Search</label>
                       <input type="search" name="searchBar" id="searchBar" placeholder="Search..." size="20" onkeyup="search()">
+                      <i class='material-icons'>search</i>
                   </form>
               </li>
 	        </ul>
