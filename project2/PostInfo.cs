@@ -10,5 +10,7 @@ namespace project2
         public int fid;
         public string problem;
         public string solution;
+        public int agree;
+        public int disagree;
     }
 }

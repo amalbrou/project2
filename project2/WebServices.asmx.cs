@@ -90,7 +90,7 @@ namespace project2
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //the only thing fancy about this query is SELECT LAST_INSERT_ID() at the end.  All that
             //does is tell mySql server to return the primary key of the last inserted row.
-            string sqlSelect = "insert into feedback2 (FID, problem, solution) " +
+            string sqlSelect = "insert into feedback3 (FID, problem, solution) " +
                 "values(@idValue, @probValue, @solValue); SELECT LAST_INSERT_ID();";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
@@ -130,10 +130,10 @@ namespace project2
             //Keeps everything simple.
 
             //WE ONLY SHARE ACCOUNTS WITH LOGGED IN USERS!
-                DataTable sqlDt = new DataTable("feedback2");
+                DataTable sqlDt = new DataTable("feedback3");
 
                 string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-                string sqlSelect = "select * from feedback2 where approved = 0";
+                string sqlSelect = "select * from feedback3 where approved = 0";
 
                 MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
                 MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -170,10 +170,10 @@ namespace project2
             //Keeps everything simple.
 
             //WE ONLY SHARE ACCOUNTS WITH LOGGED IN USERS!
-            DataTable sqlDt = new DataTable("feedback2");
+            DataTable sqlDt = new DataTable("feedback3");
 
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-            string sqlSelect = "select * from feedback2 where approved = 1";
+            string sqlSelect = "select * from feedback3 where approved = 1";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -193,7 +193,9 @@ namespace project2
                 {
                     fid = Convert.ToInt32(sqlDt.Rows[i]["fid"]),
                     problem = sqlDt.Rows[i]["problem"].ToString(),
-                    solution = sqlDt.Rows[i]["solution"].ToString()
+                    solution = sqlDt.Rows[i]["solution"].ToString(),
+                    agree = Convert.ToInt32(sqlDt.Rows[i]["agree"]),
+                    disagree = Convert.ToInt32(sqlDt.Rows[i]["disagree"])
                 });
             }
             //convert the list of accounts to an array and return!
@@ -207,7 +209,7 @@ namespace project2
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //this is a simple update, with parameters to pass in values
-            string sqlSelect = "delete from feedback2 where FID=@idValue;";
+            string sqlSelect = "delete from feedback3 where FID=@idValue;";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -234,7 +236,7 @@ namespace project2
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //this is a simple update, with parameters to pass in values
-            string sqlSelect = "update feedback2 set approved = 1 where FID=@idValue;";
+            string sqlSelect = "update feedback3 set approved = 1 where FID=@idValue;";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);

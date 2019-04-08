@@ -31,7 +31,17 @@
             });
         }
 
+
         var postArray;
+
+        function IncrementAgree(idNum, agreeNum) {
+
+            var id = document.getElementById("agreeBtn" + idNum);
+            var agrees; 
+            console.log(number);
+        }
+
+        
         //this function grabs accounts and loads our account window
         function LoadPosts() {
             var webMethod = "WebServices.asmx/GetApprovedPosts";
@@ -51,7 +61,10 @@
                             //li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
 
-                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction'><i class='material-icons' style='font-size: 16px;'>thumb_up</i></button><button type='button' class='reaction'><i class='material-icons' style='font-size: 16px;'>thumb_down</i></button>";
+                            post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction' id='agreeBtn" + postArray[i].fid +
+                                "' onclick='IncrementAgree(" + postArray[i].fid + "," + postArray[i].agree + ")'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
+                                + postArray[i].fid + "' onclick='IncrementDisagree(" + postArray[i].fid + "," + postArray[i].disagree + ")'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
+
                             li.innerHTML = post;
 
                             $("#displayUl").append(li);
