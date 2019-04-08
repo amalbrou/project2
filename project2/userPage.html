@@ -10,9 +10,9 @@
     <script>
 
         var hasRefreshed = false;
-        function CreatePost(fid, problem, solution) {
+        function CreatePost(problem, solution) {
             var webMethod = "WebServices.asmx/PostQuestion";
-            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\",\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
+            var parameters = "{\"problem\":\"" + encodeURI(problem) + "\",\"solution\":\"" + encodeURI(solution) + "\"}";
             $.ajax({
                 type: "POST",
                 url: webMethod,
@@ -33,15 +33,14 @@
 
 
         var postArray;
-
-        function IncrementAgree(idNum, agreeNum) {
-
-            var id = document.getElementById("agreeBtn" + idNum);
-            var agrees; 
-            console.log(number);
+        var agreeCount = 0;
+        function IncrementAgree(idNum) {
+            agreeCount += 1;
+            document.getElementById("agreeBtn" + idNum).innerHTML = agreeCount + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i>";
+            postArray[agreeCount - 1].agree = agreeCount;
         }
 
-        
+
         //this function grabs accounts and loads our account window
         function LoadPosts() {
             var webMethod = "WebServices.asmx/GetApprovedPosts";
@@ -62,8 +61,8 @@
                             li.setAttribute("class", "display");
 
                             post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction' id='agreeBtn" + postArray[i].fid +
-                                "' onclick='IncrementAgree(" + postArray[i].fid + "," + postArray[i].agree + ")'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
-                                + postArray[i].fid + "' onclick='IncrementDisagree(" + postArray[i].fid + "," + postArray[i].disagree + ")'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
+                                "'onclick='IncrementAgree("+postArray[i].fid+")'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
+                                + postArray[i].fid + "'onclick='IncrementDisagree(" + postArray[i].fid + "," + postArray[i].disagree + ")'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
 
                             li.innerHTML = post;
 

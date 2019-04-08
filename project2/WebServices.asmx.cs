@@ -85,18 +85,18 @@ namespace project2
 
 
         [WebMethod(EnableSession = true)]
-        public void PostQuestion(string fid, string problem, string solution)
+        public void PostQuestion(string problem, string solution)
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //the only thing fancy about this query is SELECT LAST_INSERT_ID() at the end.  All that
             //does is tell mySql server to return the primary key of the last inserted row.
-            string sqlSelect = "insert into feedback3 (FID, problem, solution) " +
-                "values(@idValue, @probValue, @solValue); SELECT LAST_INSERT_ID();";
+            string sqlSelect = "insert into feedback3 (problem, solution) " +
+                "values(@probValue, @solValue); SELECT LAST_INSERT_ID();";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
+            //sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
             sqlCommand.Parameters.AddWithValue("@probValue", HttpUtility.UrlDecode(problem));
             sqlCommand.Parameters.AddWithValue("@solValue", HttpUtility.UrlDecode(solution));
 
