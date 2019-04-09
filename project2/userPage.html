@@ -33,11 +33,41 @@
 
 
         var postArray;
-        var agreeCount = 0;
-        function IncrementAgree(idNum) {
-            agreeCount += 1;
-            document.getElementById("agreeBtn" + idNum).innerHTML = agreeCount + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i>";
-            postArray[agreeCount - 1].agree = agreeCount;
+
+        function IncrementAgree(fid) {
+            var webMethod = "WebServices.asmx/Agree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Unable to update agree");
+                }
+            });
+        }
+
+        function IncrementDisagree(fid) {
+            var webMethod = "WebServices.asmx/Disagree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Unable to update disagree");
+                }
+            });
         }
 
 
@@ -58,11 +88,11 @@
                             var li = document.createElement("LI");
 
                             //li.setAttribute("id", "msLi" + [i]);
-                            li.setAttribute("class", "display");
+                            li.setAttribute("class", "display"); 
 
                             post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction' id='agreeBtn" + postArray[i].fid +
-                                "'onclick='IncrementAgree("+postArray[i].fid+")'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
-                                + postArray[i].fid + "'onclick='IncrementDisagree(" + postArray[i].fid + "," + postArray[i].disagree + ")'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
+                                "'onclick='IncrementAgree(" + postArray[i].fid +"); return false;'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
+                                + postArray[i].fid + "'onclick='IncrementDisagree(" + postArray[i].fid + "); return false;'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
 
                             li.innerHTML = post;
 

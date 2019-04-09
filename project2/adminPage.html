@@ -166,12 +166,15 @@
             for (var i = 1; i <= liCounter; i++) {
                 //var liElement = document.getElementById("msLi" + [i]);
                 //var liElement = document.getElementsByClassName("fb");
+
                 var liElement = document.getElementById("cbox" + [i]);
-                console.log(liElement);
+                //console.log(liElement);
+
                 if (liElement.checked == true) {
                     fid = liElement.value;
+
                     //elemToDelete = $("cbox" + [i] + ".fb");
-                    console.log(fid);
+                    //console.log(fid);
                     //console.log(elemToApprove);
                     var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
                     $.ajax({
