@@ -256,5 +256,54 @@ namespace project2
             }
             sqlConnection.Close();
         }
+
+
+        [WebMethod(EnableSession = true)]
+        public void Agree(string fid)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+       
+            string sqlSelect = "update feedback3 set agree = agree + 1 where FID=@idValue;";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
+
+            sqlConnection.Open();
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
+        }
+
+
+
+        [WebMethod(EnableSession = true)]
+        public void Disagree(string fid)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            
+            string sqlSelect = "update feedback3 set disagree = disagree + 1 where FID=@idValue;";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
+
+            sqlConnection.Open();
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
+        }
     }
 }

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="stylesheet" href="feedback.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -166,12 +167,15 @@
             for (var i = 1; i <= liCounter; i++) {
                 //var liElement = document.getElementById("msLi" + [i]);
                 //var liElement = document.getElementsByClassName("fb");
+
                 var liElement = document.getElementById("cbox" + [i]);
-                console.log(liElement);
+                //console.log(liElement);
+
                 if (liElement.checked == true) {
                     fid = liElement.value;
+
                     //elemToDelete = $("cbox" + [i] + ".fb");
-                    console.log(fid);
+                    //console.log(fid);
                     //console.log(elemToApprove);
                     var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
                     $.ajax({
@@ -206,7 +210,7 @@
 	    </header>
 		<nav class="menu">
 	        <ul>
-	          <li><a onclick="LogOff()" href="#" class="active">Logout</a></li>
+	          <li><a onclick="LogOff()" href="#" class="active"><i class='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
 	        </ul>
 	    </nav>
         <main>
@@ -214,15 +218,15 @@
 
             <div id="uncheckedPosts"></div>
             <div id="buttons">
-                <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny<i class='material-icons'>close</i></button>
-                <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve<i class='material-icons'>check</i></button>
+                <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny &nbsp;<i class='far fa-trash-alt'></i></button>
+                <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve  &nbsp;<i class='fas fa-check'></i></button>
             </div>
 
         </main>
 
 	      <footer>
 	        Copyright &copy; 2019 Feed.It.Back<br>
-	        <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
+	        <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000;  text-decoration:none;">HackStreetBoys@cis440.com</a>
 	      </footer>
 
     </div>

@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <link rel="stylesheet" href="feedback.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -33,11 +35,41 @@
 
 
         var postArray;
-        var agreeCount = 0;
-        function IncrementAgree(idNum) {
-            agreeCount += 1;
-            postArray[idNum - 3].agree = agreeCount;
-            document.getElementById("agreeBtn" + idNum).innerHTML = postArray[idNum - 3].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i>";
+
+        function IncrementAgree(fid) {
+            var webMethod = "WebServices.asmx/Agree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Unable to update agree");
+                }
+            });
+        }
+
+        function IncrementDisagree(fid) {
+            var webMethod = "WebServices.asmx/Disagree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Unable to update disagree");
+                }
+            });
         }
 
 
@@ -61,8 +93,8 @@
                             li.setAttribute("class", "display");
 
                             post = "<strong>Problem:</strong> " + postArray[i].problem + "<br><strong>Solution:</strong> " + postArray[i].solution + "<br><button type='button' class='reaction' id='agreeBtn" + postArray[i].fid +
-                                "'onclick='IncrementAgree("+postArray[i].fid+")'>" + postArray[i].agree + "<i class='material-icons' style='font-size: 16px; padding-left: 5px;'>thumb_up</i></button><button type='button' class='reaction' id='disagreeBtn"
-                                + postArray[i].fid + "'onclick='IncrementDisagree(" + postArray[i].fid + "," + postArray[i].disagree + ")'>" + postArray[i].disagree + " <i class='material-icons' style ='font-size: 16px; padding-left: 5px;'>thumb_down</i></button>";
+                                "'onclick='IncrementAgree(" + postArray[i].fid + "); return false;'>" + postArray[i].agree + "<i class='far fa-thumbs-up' style='margin-left:10px;'></i></button><button type='button' class='reaction' id='disagreeBtn"
+                                + postArray[i].fid + "'onclick='IncrementDisagree(" + postArray[i].fid + "); return false;'>" + postArray[i].disagree + " <i class='far fa-thumbs-down' style='margin-left:5px;'></i></button>";
 
                             li.innerHTML = post;
 
@@ -123,7 +155,7 @@
   			<div class="overlay-content">
     		
       			<h2>Rules...</h2>
-      			<ol>
+      			<ol style="margin-left: auto; margin-right: auto; width: 50%;">
       				<li>Don't use any real names in posts.</li>
                     <li>Must be 400 characters and under.</li>
       				<li>Don't use profanity.</li>
@@ -142,13 +174,12 @@
 
 		<nav class="menu">
 	        <ul>
-	          <li><a href="home.html" class="active">Take Me Home&nbsp<i class='material-icons'>home</i></a></li>
-	          <li><a href="#" onclick="openOverlay();">Post&nbsp<i class='material-icons'>create</i></a></li>
+	          <li><a href="home.html" class="active">Take Me Home&nbsp<i class="fa fa-home"></i></a></li>
+	          <li><a href="#" onclick="openOverlay();">Post&nbsp<i class="fa fa-fw fa-edit"></i></a></li>
               <li id="search">
                   <form method="get">
-                      <label for="searchBar">Search</label>
                       <input type="search" name="searchBar" id="searchBar" placeholder="Search..." size="20" onkeyup="search()">
-                      <i class='material-icons'>search</i>
+                      <i class="fa fa-fw fa-search"></i>
                   </form>
               </li>
 	        </ul>
@@ -172,7 +203,7 @@
 
 	      <footer>
 	        Copyright &copy; 2019 Feed.It.Back<br>
-	        <a href="mailto:HackStreetBoys@cis440.com">HackStreetBoys@cis440.com</a>
+	        <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000; text-decoration:none;">HackStreetBoys@cis440.com</a>
 	      </footer>
 
     </div>
