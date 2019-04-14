@@ -46,7 +46,9 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    location.reload();
+                    $("#displayUl").empty();
+                    LoadPosts();
+                    //window.location.href = "userPage.html";
                 },
                 error: function (e) {
                     alert("Unable to update agree");
@@ -88,7 +90,7 @@
                         for (var i = 0; i < postArray.length; i++) {
                             var post;
                             var li = document.createElement("LI");
-                            console.log(postArray.length);
+
                             //li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
 
@@ -144,69 +146,57 @@
 
         }
     </script>
-
 </head>
-
-  <body>
+<body>
     <div id="userPage">
+        <div id="myOverlay" class="overlay">
+            <span class="closebtn" onclick="closeOverlay()" title="Close Overlay">×</span>
+            <div class="overlay-content">
 
-    	<div id="myOverlay" class="overlay">
-  			<span class="closebtn" onclick="closeOverlay()" title="Close Overlay">×</span>
-  			<div class="overlay-content">
-    		
-      			<h2>Rules...</h2>
-      			<ol style="margin-left: auto; margin-right: auto; width: 50%;">
-      				<li>Don't use any real names in posts.</li>
+                <h2>Rules...</h2>
+                <ol style="margin-left: auto; margin-right: auto; width: 50%;">
+                    <li>Don't use any real names in posts.</li>
                     <li>Must be 400 characters and under.</li>
-      				<li>Don't use profanity.</li>
-      				<li>Don't bully others.</li>      					
-      				<li>Be Professional.</li>
-      			</ol>
-    			
-  			</div>
-		</div>
+                    <li>Don't use profanity.</li>
+                    <li>Don't bully others.</li>
+                    <li>Be Professional.</li>
+                </ol>
 
+            </div>
+        </div>
 
-	    <header>
-	        <img src="logo.png" alt="FeedItBack Logo">
-	        <h1>Feed.It.Back</h1>
-	    </header>
-
-		<nav class="menu">
-	        <ul>
-	          <li><a href="home.html" class="active">Take Me Home&nbsp<i class="fa fa-home"></i></a></li>
-	          <li><a href="#" onclick="openOverlay();">Post&nbsp<i class="fa fa-fw fa-edit"></i></a></li>
-              <li id="search">
-                  <form method="get">
-                      <input type="search" name="searchBar" id="searchBar" placeholder="Search..." size="20" onkeyup="search()">
-                      <i class="fa fa-fw fa-search"></i>
-                  </form>
-              </li>
-	        </ul>
-	    </nav>
-
-		<main>
-			<div id="column" onload="LoadPosts()">
+        <header>
+            <img src="logo.png" alt="FeedItBack Logo">
+            <h1>Feed.It.Back</h1>
+        </header>
+        <nav class="menu">
+            <ul>
+                <li><a href="home.html" class="active">Take Me Home&nbsp<i class="fa fa-home"></i></a></li>
+                <li><a href="#" onclick="openOverlay();">Post&nbsp<i class="fa fa-fw fa-edit"></i></a></li>
+                <li id="search">
+                    <form method="get">
+                        <input type="search" name="searchBar" id="searchBar" placeholder="Search..." size="20" onkeyup="search()">
+                        <i class="fa fa-fw fa-search"></i>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div id="column" onload="LoadPosts()">
                 <form id="employeePost" onsubmit="CreatePost($('#problem').val(), $('#solution').val()); return false;">
                     <textarea name="comments" id="problem" rows="4" cols="25" placeholder="Problem..." required="required"></textarea>
                     <textarea name="comments" id="solution" rows="4" cols="25" placeholder="Solution..." required="required"></textarea>
                     <input type="submit" name="postBtn" id="postBtn" value="Post">
                 </form>
-
                 <div>
-                    <ul id="displayUl">
-
-                    </ul>
+                    <ul id="displayUl"></ul>
                 </div>
-         	</div>
-		</main>
-
-	      <footer>
-	        Copyright &copy; 2019 Feed.It.Back<br>
-	        <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000; text-decoration:none;">HackStreetBoys@cis440.com</a>
-	      </footer>
-
+            </div>
+        </main>
+        <footer>
+            Copyright &copy; 2019 Feed.It.Back<br>
+            <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000; text-decoration:none;">HackStreetBoys@cis440.com</a>
+        </footer>
     </div>
-  </body>
-
+</body>
 </html>

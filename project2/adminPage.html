@@ -200,36 +200,29 @@
         }
     </script>
 </head>
-
-  <body>
+<body>
     <div id="adminPage">
-
-	    <header>
-	        <img src="logo.png" alt="FeedItBack Logo">
-	        <h1>Feed.It.Back</h1>
-	    </header>
-		<nav class="menu">
-	        <ul>
-	          <li><a onclick="LogOff()" href="#" class="active"><i class='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
-	        </ul>
-	    </nav>
+        <header>
+            <img src="logo.png" alt="FeedItBack Logo">
+            <h1>Feed.It.Back</h1>
+        </header>
+        <nav class="menu">
+            <ul>
+                <li><a onclick="LogOff()" href="#" class="active"><i class='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
+            </ul>
+        </nav>
         <main>
-           
 
             <div id="uncheckedPosts"></div>
             <div id="buttons">
                 <button type="button" id="denyBtn" onclick="DeletePost(); return false;">Deny &nbsp;<i class='far fa-trash-alt'></i></button>
                 <button type="button" id="approveBtn" onclick="ApprovePost(); return false;">Approve  &nbsp;<i class='fas fa-check'></i></button>
             </div>
-
         </main>
-
-	      <footer>
-	        Copyright &copy; 2019 Feed.It.Back<br>
-	        <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000;  text-decoration:none;">HackStreetBoys@cis440.com</a>
-	      </footer>
-
+        <footer>
+            Copyright &copy; 2019 Feed.It.Back<br>
+            <a href="mailto:HackStreetBoys@cis440.com" style="color:#000000;  text-decoration:none;">HackStreetBoys@cis440.com</a>
+        </footer>
     </div>
-  </body>
-
+</body>
 </html>
