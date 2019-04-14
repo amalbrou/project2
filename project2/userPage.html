@@ -46,8 +46,41 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    $("#displayUl").empty();
-                    LoadPosts();
+                    RefreshAgree(fid);
+                    //$("#displayUl").empty();
+                    //postArray = msg.d;
+                    //for (var i = 0; i < postArray.length; i++) {
+                    //    //$("#agreeBtn" + postArray[i].fid).show();
+                    //    //$("#agreeBtn" + postArray[i].fid).text(postArray[i].agree);
+                    //}
+                    //LoadPosts();
+                    //window.location.href = "userPage.html";
+                },
+                error: function (e) {
+                    alert("Unable to update agree");
+                }
+            });
+        }
+
+        function RefreshAgree(fid) {
+            var webMethod = "WebServices.asmx/RefreshAgree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //$("#displayUl").empty();
+                    //postArray = msg.d;
+                    postArray = msg.d;
+                    for (var i = 0; i < postArray.length; i++) {
+                        //$("#agreeBtn" + postArray[i].fid).show();
+                        $("#agreeBtn" + fid).html(postArray[i].agree + "<i class='far fa-thumbs-up' style='margin-left:10px;'></i>");
+                        console.log(fid);
+                    }
+                    //LoadPosts();
                     //window.location.href = "userPage.html";
                 },
                 error: function (e) {
@@ -66,8 +99,34 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    $("#displayUl").empty();
-                    LoadPosts();
+                    RefreshDisagree(fid);
+                },
+                error: function (e) {
+                    alert("Unable to update disagree");
+                }
+            });
+        }
+
+        function RefreshDisagree(fid) {
+            var webMethod = "WebServices.asmx/RefreshDisagree";
+            var parameters = "{\"fid\":\"" + encodeURI(fid) + "\"}";
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //$("#displayUl").empty();
+                    //postArray = msg.d;
+                    postArray = msg.d;
+                    for (var i = 0; i < postArray.length; i++) {
+                        //$("#agreeBtn" + postArray[i].fid).show();
+                        $("#disagreeBtn" + fid).html(postArray[i].disagree + " <i class='far fa-thumbs-down' style='margin-left:5px;'></i>");
+                        console.log(fid);
+                    }
+                    //LoadPosts();
+                    //window.location.href = "userPage.html";
                 },
                 error: function (e) {
                     alert("Unable to update disagree");

@@ -281,6 +281,41 @@ namespace project2
             sqlConnection.Close();
         }
 
+        [WebMethod(EnableSession = true)]
+        public PostInfo[] RefreshAgree(string fid)
+        {
+            DataTable sqlDt = new DataTable("feedback3");
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            string sqlSelect = "select agree from feedback3 where FID=@idValue";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
+
+            //gonna use this to fill a data table
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            //filling the data table
+            sqlDa.Fill(sqlDt);
+
+            //loop through each row in the dataset, creating instances
+            //of our container class Account.  Fill each acciount with
+            //data from the rows, then dump them in a list.
+            List<PostInfo> feedback = new List<PostInfo>();
+            for (int i = 0; i < sqlDt.Rows.Count; i++)
+            {
+                feedback.Add(new PostInfo
+                {
+                    //fid = Convert.ToInt32(sqlDt.Rows[i]["fid"]),
+                    agree = Convert.ToInt32(sqlDt.Rows[i]["agree"])
+                });
+            }
+            //convert the list of accounts to an array and return!
+            return feedback.ToArray();
+        }
+
 
 
         [WebMethod(EnableSession = true)]
@@ -307,26 +342,38 @@ namespace project2
         }
 
         [WebMethod(EnableSession = true)]
-        public void RefreshAgree(string fid)
+        public PostInfo[] RefreshDisagree(string fid)
         {
+            DataTable sqlDt = new DataTable("feedback3");
+
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
-            string sqlSelect = "select agree from feedback3 where FID=@idValue;";
+            string sqlSelect = "select disagree from feedback3 where FID=@idValue";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
             sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(fid));
 
-            sqlConnection.Open();
-            try
+            //gonna use this to fill a data table
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            //filling the data table
+            sqlDa.Fill(sqlDt);
+
+            //loop through each row in the dataset, creating instances
+            //of our container class Account.  Fill each acciount with
+            //data from the rows, then dump them in a list.
+            List<PostInfo> feedback = new List<PostInfo>();
+            for (int i = 0; i < sqlDt.Rows.Count; i++)
             {
-                sqlCommand.ExecuteNonQuery();
+                feedback.Add(new PostInfo
+                {
+                    //fid = Convert.ToInt32(sqlDt.Rows[i]["fid"]),
+                    disagree = Convert.ToInt32(sqlDt.Rows[i]["disagree"])
+                });
             }
-            catch (Exception e)
-            {
-            }
-            sqlConnection.Close();
+            //convert the list of accounts to an array and return!
+            return feedback.ToArray();
         }
     }
 }
