@@ -58,7 +58,8 @@
                             li.setAttribute("id", "msLi" + [i]);
                             li.setAttribute("class", "display");
                             //console.log(li);
-                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<strong>&nbsp;Problem:</strong> " + postArray[i].problem + "<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Solution:</strong> " + postArray[i].solution;
+                            post = "<input type='checkbox' class='fb' value='" + postArray[i].fid + "'>" + "<table><tr><td><strong>Problem:</strong> " + postArray[i].problem + "</td></tr><tr><td><strong>Solution:</strong> " + postArray[i].solution + "</td></tr></table>";
+                           
                             //alert(postArray[i].fid);
                             li.innerHTML = post;
                             $("#uncheckedPosts").append(li);
